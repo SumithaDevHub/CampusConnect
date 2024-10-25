@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Appointments - Student Dashboard | Bannari Amman Institute of Technology</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside
+            class="bg-blue-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+            <div class="flex items-center space-x-2 px-4">
+                <i class="fas fa-user-graduate text-2xl"></i>
+                <span class="text-2xl font-extrabold">Student Portal</span>
+            </div>
+            <nav>
+                <a href="student-dashboard.html"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                    <i class="fas fa-home mr-2"></i>Dashboard
+                </a>
+                <a href="book-appointment.html"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                    <i class="fas fa-calendar-plus mr-2"></i>Book Appointment
+                </a>
+                <a href="my-appointments.html"
+                    class="block py-2.5 px-4 rounded transition duration-200 bg-blue-700 text-white">
+                    <i class="fas fa-calendar-check mr-2"></i>My Appointments
+                </a>
+                <a href="appointment-history.html"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                    <i class="fas fa-history mr-2"></i>Appointment History
+                </a>
+                <a href="../index.html"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-10 overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold">My Appointments</h1>
+                <!-- <a href="index.html" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                </a> -->
+            </div>
+
+            <!-- Upcoming Appointments -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                <h2 class="text-2xl font-semibold mb-4">Upcoming Appointments</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200" id="appointmentsTable">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Staff</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Date</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Time</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Reason</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Status</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">Dr. Smith</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2023-05-20</td>
+                                <td class="px-6 py-4 whitespace-nowrap">10:00 AM</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Academic Advice</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="status-label px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="text-blue-600 hover:text-blue-900 mr-2"
+                                        onclick="openModal('Dr. Smith', '2023-05-20', '10:00 AM', 'Academic Advice', this)">Accept</button>
+                                    <button class="text-red-600 hover:text-red-900"
+                                        onclick="openRejectModal('Dr. Smith', this)">Reject</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">Prof. Johnson</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2023-05-25</td>
+                                <td class="px-6 py-4 whitespace-nowrap">2:00 PM</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Career Guidance</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        class="status-label px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="text-blue-600 hover:text-blue-900 mr-2"
+                                        onclick="openModal('Prof. Johnson', '2023-05-25', '2:00 PM', 'Career Guidance', this)">Accept</button>
+                                    <button class="text-red-600 hover:text-red-900"
+                                        onclick="openRejectModal('Prof. Johnson', this)">Reject</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Accept Appointment Modal -->
+    <div id="acceptModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-md w-96">
+            <h2 class="text-lg font-semibold mb-4">Accept Appointment</h2>
+            <p id="appointmentDetails" class="mb-4"></p>
+            <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                onclick="acceptAppointment()">Confirm</button>
+            <button class="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded"
+                onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Reject Appointment Modal -->
+    <div id="rejectModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-md w-96">
+            <h2 class="text-lg font-semibold mb-4">Reject Appointment</h2>
+            <p>Reason for rejection:</p>
+            <textarea id="rejectReason" rows="3" class="mt-1 block w-full border-gray-300 rounded-md"
+                placeholder="Enter reason..."></textarea>
+            <div class="mt-4">
+                <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                    onclick="rejectAppointment()">Submit</button>
+                <button class="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded"
+                    onclick="closeRejectModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentAppointment = {};
+        let currentRow;
+
+        function openModal(staff, date, time, reason, row) {
+            currentAppointment = { staff, date, time, reason };
+            currentRow = row.closest('tr'); // Store the current row for status update
+            document.getElementById('appointmentDetails').innerText = `Are you sure you want to accept the appointment with ${staff} on ${date} at ${time} for ${reason}?`;
+            document.getElementById('acceptModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('acceptModal').classList.add('hidden');
+        }
+
+        function acceptAppointment() {
+            // Update the status in the table
+            const statusCell = currentRow.querySelector('.status-label');
+            statusCell.innerText = 'Accepted';
+            statusCell.className = 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800';
+            closeModal();
+            alert(`Appointment with ${currentAppointment.staff} accepted!`);
+            // Here you would typically send the acceptance to your server
+        }
+
+        function openRejectModal(staff, row) {
+            currentRow = row.closest('tr'); // Store the current row for status update
+            document.getElementById('rejectModal').classList.remove('hidden');
+        }
+
+        function closeRejectModal() {
+            document.getElementById('rejectModal').classList.add('hidden');
+            document.getElementById('rejectReason').value = ''; // Clear the textarea
+        }
+
+        function rejectAppointment() {
+            const reason = document.getElementById('rejectReason').value;
+            if (reason) {
+                // Update the status in the table
+                const statusCell = currentRow.querySelector('.status-label');
+                statusCell.innerText = 'Rejected';
+                statusCell.className = 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800';
+                closeRejectModal();
+                alert(`Appointment rejected for the following reason: ${reason}`);
+                // Here you would typically send the rejection reason to your server
+            } else {
+                alert('Please provide a reason for rejection.');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Appointment Booking Portal | Bannari Amman Institute of Technology</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .container {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+
+        h1 {
+            color: #003366;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-mode h1 {
+            color: #ffffff;
+        }
+
+        h2 {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        body.dark-mode h2 {
+            color: #cccccc;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        select,
+        input,
+        button {
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #003366;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #004080;
+        }
+
+        body.dark-mode button {
+            background-color: #0055a5;
+        }
+
+        body.dark-mode button:hover {
+            background-color: #0066cc;
+        }
+
+        #message {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .switch {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .slider {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+            background-color: #ccc;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .slider:before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: white;
+            top: 1px;
+            left: 1px;
+            transition: transform 0.3s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid #cbd5e0;
+            outline: none;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group input:not(:placeholder-shown) {
+            border-bottom-color: #4299e1;
+        }
+
+        .input-group input:focus+label,
+        .input-group input:not(:placeholder-shown)+label {
+            transform: translateY(-20px);
+            font-size: 0.75rem;
+            color: #4299e1;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-md w-96">
+            <h1 class="text-2xl font-bold mb-2 text-center text-gray-800">Appointment Booking Portal</h1>
+            <h2 class="text-lg text-gray-600 mb-6 text-center">Bannari Amman Institute of Technology</h2>
+            <form id="loginForm" class="space-y-6">
+                <div class="input-group">
+                    <input type="text" id="username" name="username" required placeholder=" ">
+                    <label for="username" class="text-gray-500">Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" required placeholder=" ">
+                    <label for="password" class="text-gray-500">Password</label>
+                </div>
+                <div>
+                    <button type="submit"
+                        class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        Log In
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // This is a mock authentication. In a real application, you would validate credentials against a server.
+            if (username && password) {
+                if (username.startsWith('student')) {
+                    window.location.href = 'student/student-dashboard.html';
+                } else if (username.startsWith('staff')) {
+                    window.location.href = 'staff/staff-dashboard.html';
+                } else {
+                    alert('Invalid username or password');
+                }
+            } else {
+                alert('Please enter both username and password');
+            }
+        });
+    </script>
+</body>
+
+</html>

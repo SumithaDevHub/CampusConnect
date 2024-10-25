@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Student Dashboard | Bannari Amman Institute of Technology</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <style>
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid #cbd5e0;
+            outline: none;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group input:not(:placeholder-shown),
+        .input-group select:focus,
+        .input-group select:not(:placeholder-shown),
+        .input-group textarea:focus,
+        .input-group textarea:not(:placeholder-shown) {
+            border-bottom-color: #4299e1;
+        }
+
+        .input-group input:focus+label,
+        .input-group input:not(:placeholder-shown)+label,
+        .input-group select:focus+label,
+        .input-group select:not(:placeholder-shown)+label,
+        .input-group textarea:focus+label,
+        .input-group textarea:not(:placeholder-shown)+label {
+            transform: translateY(-20px);
+            font-size: 0.75rem;
+            color: #4299e1;
+        }
+
+        .input-group select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23cbd5e0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px top 50%;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar (same as in the dashboard) -->
+        <aside
+            class="bg-blue-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+            <div class="flex items-center space-x-2 px-4">
+                <i class="fas fa-user-graduate text-2xl"></i>
+                <span class="text-2xl font-extrabold">Student Portal</span>
+            </div>
+            <nav>
+                <a href="student-dashboard.html"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                    <i class="fas fa-home mr-2"></i>Dashboard
+                </a>
+                <a href="book-appointment.html"
+                    class="block py-2.5 px-4 rounded transition duration-200 bg-blue-700 text-white">
+                    <i class="fas fa-calendar-plus mr-2"></i>Book Appointment
+                </a>
+                <a href="my-appointments.html"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                    <i class="fas fa-calendar-check mr-2"></i>My Appointments
+                </a>
+                <a href="appointment-history.html"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                    <i class="fas fa-history mr-2"></i>Appointment History
+                </a>
+                <a href="../index.html"
+                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-10">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold">Book an Appointment</h1>
+                <!-- <a href="index.html" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                </a> -->
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <form id="appointmentForm" class="space-y-4">
+                    <div class="input-group">
+                        <select id="staff" name="staff" required placeholder=" ">
+                            <option value="" disabled selected></option>
+                            <option value="dr-smith">Dr. Smith - Academic Advisor</option>
+                            <option value="prof-johnson">Prof. Johnson - Career Counselor</option>
+                            <option value="dr-brown">Dr. Brown - Department Head</option>
+                        </select>
+                        <label for="staff">Select Staff Member</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="date" id="date" name="date" required placeholder=" ">
+                        <label for="date">Appointment Date</label>
+                    </div>
+
+                    <div class="input-group">
+                        <select id="time" name="time" required placeholder=" ">
+                            <option value="" disabled selected></option>
+                            <option value="09:00">09:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                        </select>
+                        <label for="time">Preferred Time</label>
+                    </div>
+
+                    <div class="input-group">
+                        <textarea id="reason" name="reason" rows="3" required placeholder=" "></textarea>
+                        <label for="reason">Reason for Appointment</label>
+                    </div>
+
+                    <div class="input-group">
+                        <select id="emergency" name="emergency" required placeholder=" ">
+                            <option value="" disabled selected></option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                        <label for="emergency">Emergency Level</label>
+                    </div>
+
+                    <div>
+                        <button type="submit"
+                            class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out">
+                            <i class="fas fa-calendar-plus mr-2"></i>Book Appointment
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.getElementById('appointmentForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Here you would typically send the form data to your server
+            alert('Appointment request submitted successfully!');
+            // Optionally, redirect to the dashboard or clear the form
+        });
+    </script>
+</body>
+
+</html>
